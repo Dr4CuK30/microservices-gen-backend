@@ -1,10 +1,21 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { XmlParserMiddleware } from './xml-parser/xml-parser.middleware';
 
 @Module({
-  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(XmlParserMiddleware)
+      .forRoutes({ method: RequestMethod.POST, path: '*' });
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data>
+  <name>
+    Microservicio1
+  </name>
+  <lenguaje>
+    NODE
+  </lenguaje>
+  <endpoints>
+    <endpoint>
+      <name>
+        endpoint1
+      </name>
+      <type>
+        GET
+      </type>
+    </endpoint>
+  </endpoints>
+</data>
