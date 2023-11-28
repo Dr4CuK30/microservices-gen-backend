@@ -24,7 +24,7 @@ export class GenerateMicroserviceDto {
   endpoints: Endpoint[];
 }
 
-class Endpoint {
+export class Endpoint {
   @IsString()
   name: string;
 

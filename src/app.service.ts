@@ -6,7 +6,7 @@ import utils from './utils';
 export class AppService {
   async generateMicroservice(data: GenerateMicroserviceDto) {
     try {
-      await utils.generateProject(data.name);
+      await utils.generateProject(data);
       return 'success';
     } catch (error) {
       console.log(error);

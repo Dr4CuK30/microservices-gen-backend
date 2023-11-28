@@ -1,11 +1,16 @@
 import { spawn } from 'child_process';
+import { createEndpoints } from './createEndpoints';
+import { GenerateMicroserviceDto } from 'src/dtos/app.dto';
 
-export default async (projectName: string) => {
+export default async (data: GenerateMicroserviceDto) => {
   console.log('|| PROJECT GENERATION|| ');
-  await generateProject(projectName);
+  await generateProject(data);
 };
 
-const generateProject = (projectName: string): Promise<number> => {
+const generateProject = ({
+  endpoints,
+  name: projectName,
+}: GenerateMicroserviceDto): Promise<number> => {
   const command = 'nest';
   const args = ['new', `output/${projectName}`];
   const process = spawn(command, args, { stdio: 'pipe' });
@@ -20,7 +25,7 @@ const generateProject = (projectName: string): Promise<number> => {
     try {
       process.on('close', async (code) => {
         if (code === 0) {
-          //await generateFeedsService(projectName);
+          await createEndpoints(projectName, endpoints);
           console.log('Servicio generado satisfactoriamente');
           resolve(code);
         } else {
