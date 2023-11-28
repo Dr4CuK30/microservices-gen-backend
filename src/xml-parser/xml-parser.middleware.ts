@@ -28,6 +28,9 @@ export class XmlParserMiddleware implements NestMiddleware {
             },
           );
           formatedData.endpoints = Object.values(formatedData?.endpoints);
+          if (Array.isArray(formatedData.endpoints)) {
+            formatedData.endpoints = formatedData.endpoints[0];
+          }
           req.body = formatedData;
           const dtoInstance = plainToInstance(
             GenerateMicroserviceDto,
@@ -45,9 +48,9 @@ export class XmlParserMiddleware implements NestMiddleware {
                 error.constraints,
               );
             });
-
             res.status(HttpStatus.BAD_REQUEST).json(errorResponse);
           }
+
           next();
         } catch (error) {
           console.error('Error al procesar XML:', error);

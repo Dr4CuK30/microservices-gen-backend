@@ -1,6 +1,6 @@
 import { IsArray, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
-enum EndpointTypesEnum {
+export enum EndpointTypesEnum {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
